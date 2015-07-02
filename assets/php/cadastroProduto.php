@@ -29,7 +29,6 @@ session_start();
                     VALUES('$produto', '$descricao', $valor, $altura, $largura, $comprimento, $peso, $quantidade )";
 		$conexao->query($query);
         
-        echo $query;
 		echo "Produto adicionado com sucesso.";
     } else {
         echo "Você não tem permissão para adicionar produtos.";

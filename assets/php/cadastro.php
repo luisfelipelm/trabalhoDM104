@@ -19,7 +19,9 @@
     $pais= $_POST ["pais"];
     $login= $_POST ["login"];
     $senha= $_POST ["senha"];
-    $news= $_POST ["news"];
+    if (isset($_POST["news"]))
+        $news= $_POST ["news"];
+    else $news= "";
     $sexo= $_POST ["sexo"];
 
 
