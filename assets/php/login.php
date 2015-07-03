@@ -23,7 +23,10 @@ session_start();
 
     if($query_ver>0){
         $_SESSION['login'] = $login;
-        header("Location: ../html/produtos.html");
+        if ($login == "admin")
+            header("Location: ../html/menuAdmin.html");
+        else
+            header("Location: ../html/pedidos.html");
         die();
     } else {
 		echo "Login e/ou senha invalido(s).";
