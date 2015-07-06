@@ -20,7 +20,7 @@ session_start();
     $quantidade= $_POST["quantidade"];
 
 
-    $conexao = new mysqli("localhost","root","root","trabdm104");
+    $conexao = new mysqli("localhost","root","lflm.zp,lflm","pos_geral");
     if ($conexao->connect_errno) {
         die ("Erro de conexão com localhost, o seguinte erro ocorreu -> ". $conexao->connect_errno);
     }

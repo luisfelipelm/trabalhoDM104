@@ -4,7 +4,7 @@
 	$offset = ($page-1)*$rows;
 	$result = array();
 
-	include '../php/conn.php';
+	include '../../php/conn.php';
 	
 	$rs = mysql_query("select count(*) from clientes");
 	$row = mysql_fetch_row($rs);

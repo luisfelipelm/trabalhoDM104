@@ -17,14 +17,14 @@ if (isset($_REQUEST["news"]))
 else $news= "";
 $sexo= $_REQUEST ["sexo"];
 
-include '../php/conn.php';
+include '../../php/conn.php';
 
-$sql = "UPDATE `pos_geral`.`clientes` SET
+$sql = "UPDATE `clientes` SET
                         `nome` = '$nome',
                         `email` = '$email',
                         `sexo` = '$sexo',
-                        `ddd` = '$ddd',
-                        `telefone` = '$telefone',
+                        `ddd` = $ddd,
+                        `telefone` = $telefone,
                         `endereco` = '$endereco',
                         `cidade` = '$cidade',
                         `estado` = '$estado',

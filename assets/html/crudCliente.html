@@ -33,14 +33,14 @@
         function newUser(){
             $('#dlg').dialog('open').dialog('setTitle','Novo Cliente');
             $('#fm').form('clear');
-            url = '../php/salvar_cadastroclientes.php';
+            url = '../php/crudCliente/salvar_cadastroclientes.php';
         }
         function editUser(){
             var row = $('#dg').datagrid('getSelected');
             if (row){
                 $('#dlg').dialog('open').dialog('setTitle','Editar Cliente');
                 $('#fm').form('load',row);
-                url = '../php/atualizar_cadastroclientes.php?id='+row.id;
+                url = '../php/crudCliente/atualizar_cadastroclientes.php?id='+row.id;
             }
         }
         function saveUser(){
@@ -68,7 +68,7 @@
             if (row){
                 $.messager.confirm('Confirm','Tem certeza que deseja remover o Cliente?',function(r){
                     if (r){
-                        $.post('../php/remover_cadastroclientes.php',{id:row.id},function(result){
+                        $.post('../php/crudCliente/remover_cadastroclientes.php',{id:row.id},function(result){
                             if (result.success){
                                 $('#dg').datagrid('reload');    // reload the user data
                             } else {
@@ -91,7 +91,7 @@
     </div>
 
     <table id="dg" title="Cadastro de Clientes" class="easyui-datagrid" style="width:700px;height:250px"
-            url="../php/pegar_cadastroclientes.php"
+            url="../php/crudCliente/pegar_cadastroclientes.php"
             toolbar="#toolbar" pagination="true"
             rownumbers="true" fitColumns="true" singleSelect="true">
         <thead>
@@ -108,7 +108,7 @@
                 <th field="pais" width="50">Pais</th>
                 <th field="login" width="50">Login</th>
                 <th field="news" width="50">News</th>
-                
+                <th field="id" width="50">Id</th>
             </tr>
         </thead>
     </table>
@@ -161,6 +161,10 @@
             <div class="fitem">
                 <label>Pais:</label>
                 <input name="pais" class="easyui-validatebox" required="true">
+            </div>
+            <div>
+                <label>News:</label>
+                <input name="news" class="easyui-validatebox" required="true">
             </div>
             <div class="fitem">
                 <label>Login:</label>
