@@ -7,6 +7,7 @@
 <body>
 
 <?php
+
 session_start();
     $login = $_SESSION['login'];
     $produto= $_POST ["produto"];
@@ -19,7 +20,7 @@ session_start();
     $quantidade= $_POST["quantidade"];
 
 
-    $conexao = new mysqli("localhost","root","lflm.zp,lflm","pos_geral");
+    $conexao = new mysqli("localhost","root","root","trabdm104");
     if ($conexao->connect_errno) {
         die ("Erro de conexão com localhost, o seguinte erro ocorreu -> ". $conexao->connect_errno);
     }
