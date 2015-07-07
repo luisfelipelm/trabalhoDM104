@@ -24,7 +24,6 @@
     if ($result){
         echo json_encode(array('success'=>true));
     } else {
-        //echo json_encode(array('msg'=>'Erro ao inserir dados.'));
-        echo json_encode(array('msg'=>$sql));
+        echo json_encode(array('msg'=>'Erro ao inserir dados.'));
     }
 ?>
