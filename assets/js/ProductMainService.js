@@ -5,7 +5,7 @@ var ProductService = {
 	getList: function(callback) {
 		$.ajax({
 			type: 'GET',
-			url: 'assets/php/getProducts.php',
+			url: 'assets/php/productDAO.php',
             dataType: 'json',
 			success: function(list) {
 				callback(list);

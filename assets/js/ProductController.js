@@ -30,19 +30,12 @@ var ProductController = {
 	},
 	
 	showList: function () {
-		var list = ProductService.getList(function(list) {
-            var products = $.makeArray(list);
-            products = $.makeArray(products[0]);
-            $.each(products, function(i, v) {
-                $.each(v, function(i2, val) {
-                    $.each(val, function(i3, value) {
-                        ProductController.addToHTML(value);
-                    });
-                
-                });
-                
-            });
+        var list = ProductService.getList(function(list) {
+            list.forEach(function(product) {
+				ProductController.addToHTML(product);
+			});
 		});
+    
 	},
 	
 	addToHTML: function (product) {
