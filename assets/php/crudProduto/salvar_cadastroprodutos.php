@@ -10,7 +10,6 @@
     $comprimento= $_POST ["comprimento"];
     $peso= $_POST ["peso"];
     $quantidade= $_POST["quantidade"];
-    $id = intval($_REQUEST['id']);
 
     include '../../php/conn.php';
 
