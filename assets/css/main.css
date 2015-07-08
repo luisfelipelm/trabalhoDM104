@@ -50,3 +50,28 @@ h1 {
 	font-family: Lobster;
 	text-indent: 10px;
 }
+
+.cart  {
+	cursor: pointer;
+    width: 300px;
+    height: 40px;
+    position: absolute;
+    right: 50px;
+    top: 10px;
+    
+}
+
+.cart img {
+    width: 50px;
+}
+
+.cart p {
+    position: relative;
+    left: 60px;
+    bottom:50px;
+}
+
+.itemQuantity {
+    font-weight:bold;
+    font-size: 20px;
+}
