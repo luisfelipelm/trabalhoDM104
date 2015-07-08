@@ -4,8 +4,8 @@ require 'vendor/autoload.php';
 function getConnection() {
 	$dbhost = 'localhost';
 	$dbuser = 'root';
-	$dbpass = 'root';
-	$dbname = 'trabdm104';
+	$dbpass = 'lflm.zp,lflm';
+	$dbname = 'pos_geral';
 	$pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
 	return $pdo;
 }
