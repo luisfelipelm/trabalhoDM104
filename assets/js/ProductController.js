@@ -56,16 +56,18 @@ var ProductController = {
 		productList.appendChild(dl);
 	},
 	
-	createImage: function(imageLocation) {
+	createImage: function(imageLocation, textLegend) {
 		var img = document.createElement('img');
 		img.src = imageLocation;
+        img.title = textLegend;
 		return img;
 	},
+
 	
 	createDT: function(product) {
 		var 
 			dt = document.createElement('dt'),
-			img = ProductController.createImage('assets/images/product.png');
+			img = ProductController.createImage('assets/images/product.png', product.produto);
 		
 		dt.appendChild(img);
 		dt.className = "photo";
@@ -83,7 +85,7 @@ var ProductController = {
 	},
 	
 	createAddToCart: function(product) {
-		var imgDelete = ProductController.createImage('assets/images/addToCart.png');
+		var imgDelete = ProductController.createImage('assets/images/addToCart.png', 'Adicionar ao Carrinho');
 		
 		imgDelete.setAttribute('data-productid', product.id);
 		imgDelete.setAttribute('data-productname', product.produto);
