@@ -52,7 +52,7 @@ section dl {
     font-weight:bold;
     left: 80px;
     bottom: 70px;
-    font-family: Lobster;
+    font-family: Helvetica, Arial, sans-serif;
 }
 h1 {
 	font-family: Lobster;
@@ -64,7 +64,7 @@ h1 {
     width: 300px;
     height: 40px;
     position: absolute;
-    right: 50px;
+    right: 150px;
     top: 10px;
     
 }
@@ -82,4 +82,26 @@ h1 {
 .itemQuantity {
     font-weight:bold;
     font-size: 20px;
+}
+
+.cart div {
+    position: relative;
+    font-size: 20px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 3px #ccc, -1px -1px 3px #ccc;
+    width: 180px;
+    display: inline-block;
+    background-color: purple;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+    bottom: 100px;
+    left: 200px;
+}
+
+.cart div:hover {
+    background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,.15));
+    cursor: pointer;
 }
