@@ -100,9 +100,14 @@ var ProductController = {
     
     incrementItemIntoCart: function(product) {
 		var
-			quantityItem = document.getElementById('itemQuantity').innerHTML;
+			quantityItem = document.getElementById('itemQuantity').innerHTML,
+            itemsId = new Array(),
+			productId = product.dataset.productid;
+        
+        CartService.addId(productId);
         quantityItem =  parseInt(quantityItem) + 1;
         $('#itemQuantity').text(quantityItem);
+        alert(CartService.getListId());
 	},
     
     initItemIntoCart: function(product) {
