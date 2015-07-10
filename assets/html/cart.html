@@ -4,7 +4,7 @@
 <meta charset="UTF-8" /> 
 <title>Portal web para compras e acompanhamentos de produtos</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster" />
-<link rel="stylesheet" href="/assets/css/main.css" />
+<link rel="stylesheet" href="../css/main.css" />
 
 </head>
  
@@ -15,18 +15,35 @@
 </header>
 
 <section id="cart" class="cart">
-    <img src="/assets/images/cart.jpg" alt="Itens do carrinho">
+    <img src="../images/cart.jpg" alt="Itens do carrinho">
     <p> <span id="itemQuantity" class="itemQuantity"></span> Itens no carrinho</p> 
-    <div id="finishOderButtom">Fechar Pedido</div>
 </section>
 
 
-<section id="cartProductList">
+<section id="cartProducts">
+        <table id="cartProductTable">
+           <caption>Itens do Carrinho de Compras</caption>
+           <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="3">Total:</td>
+                    <td id="total"></td>
+                </tr>
+            </tfoot>
+            <tbody id="products"></tbody>
+        </table>
 </section>
-<script src="/assets/php/login.php"></script>
-<script src="/assets/bower_components/jquery/dist/jquery.min.js"></script>
-<script src="/assets/js/CartService.js"></script>
-<script src="/assets/js/ProductMainService.js"></script>
-<script src="/assets/js/ProductController.js"></script>
+<script src="../php/login.php"></script>
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../js/CartService.js"></script>
+<script src="../js/ProductMainService.js"></script>
+<script src="../js/CartController.js"></script>
 </body>
 </html>

@@ -107,6 +107,7 @@ var ProductController = {
         CartService.add(productId);
         quantityItem =  parseInt(quantityItem) + 1;
         $('#itemQuantity').text(quantityItem);
+        alert(CartService.getList().length);
 	},
     
     initItemIntoCart: function(product) {

@@ -1,8 +1,8 @@
 var CartController = {
 	
 	init: function () {
-		ProductCart.showList();
-        ProductController.initItemIntoCart();
+        CartController.getItemsIntoCart();
+        CartController.showList();
 	},	
 	
 	deleteProduct: function(imgDelete) {
@@ -20,30 +20,19 @@ var CartController = {
 	},
 	
 	showList: function () {
-        var list = ProductService.getList(function(list) {
-            list.forEach(function(product) {
-				ProductController.addToHTML(product);
-			});
-		});
-    
+        var list = CartService.getList();
+        list.forEach(function(product) {
+            CartController.addToHTML(product);
+        });
 	},
 	
 	addToHTML: function (product) {
-		var
-			productList = document.getElementById('productList'),
-			dl = document.createElement('dl'),
-			dt = ProductController.createDT(product),
-			ddName = ProductController.createDD(product.produto, 'name');
-			ddPrice = ProductController.createDD('R$ ' + product.valor, 'price');
-            imgAddToCart = ProductController.createAddToCart(product),
-		
+		var	
+            tbody = document.getElementById('products'),
+            tr = CartController.createTR(product);
+        
+		tbody.appendChild(tr);
         ddName.appendChild(imgAddToCart);
-		
-		dl.appendChild(dt);
-		dl.appendChild(ddName);
-		dl.appendChild(ddPrice);
-		
-		productList.appendChild(dl);
 	},
 	
 	createImage: function(imageLocation, textLegend) {
@@ -54,24 +43,25 @@ var CartController = {
 	},
 
 	
-	createDT: function(product) {
-		var 
-			dt = document.createElement('dt'),
-			img = ProductController.createImage('assets/images/product.png', product.produto);
-		
-		dt.appendChild(img);
-		dt.className = "photo";
-		
-		return dt;
+	createTR: function(product) {
+		var tr = document.createElement('tr'),
+            tdId = CartController.createTD(product.id),
+            tdNome = CartController.createTD(product.produto),
+            tdQuantity = CartController.createTD('0'),
+            tdValue = CartController.createTD(product.valor);
+        
+        tr.appendChild(tdId);
+        tr.appendChild(tdNome);
+        tr.appendChild(tdQuantity);
+        tr.appendChild(tdValue);
+        
+		return tr;
 	},
 	
-	createDD: function(value, className) {
-		var dd = document.createElement('dd');
-		
-		dd.innerHTML = value;
-		dd.className = className;
-		
-		return dd;
+	createTD: function(value) {
+		var td = document.createElement('td');
+		td.innerHTML = value;
+		return td;
 	},
 	
 	createAddToCart: function(product) {
@@ -99,8 +89,10 @@ var CartController = {
         alert(CartService.getListId());
 	},
     
-    initItemIntoCart: function(product) {
-		document.getElementById('itemQuantity').innerHTML = '0';
+    getItemsIntoCart: function(product) {
+        var itemsQuantity = CartService.getList().length;
+        alert(itemsQuantity);
+		document.getElementById('itemQuantity').innerHTML = parseInt(itemsQuantity);
 	}
 
 

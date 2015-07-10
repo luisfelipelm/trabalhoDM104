@@ -5,9 +5,11 @@ var CartService = {
     add: function (id) {
         var product = CartService.getProductById(id);
         CartService.list.push(product);
+        CartService.saveToLocalStorage();
 	},
 	
 	getList: function() {
+        CartService.retrieveFromLocalStorage();
         return CartService.list;
 	},
     
@@ -21,6 +23,7 @@ var CartService = {
                 id: id
             },
 			success: function(product) {
+                alert(product);
 				return product;
 			},
             error: function(jqXHR, textStatus, errorThrown) {
@@ -33,14 +36,14 @@ var CartService = {
 	},
 	
 	saveToLocalStorage: function () {
-		var listJson = JSON.stringify(ProductService.list);
+		var listJson = JSON.stringify(CartService.list);
 		window.localStorage.setItem('productlist', listJson);
 	},
 	
 	retrieveFromLocalStorage: function () {
 		var listJson = window.localStorage.getItem('productlist');
 		if(listJson) {
-			ProductService.list = JSON.parse(listJson);
+			CartService.list = JSON.parse(listJson);
 		}
 	}
 }
