@@ -1,10 +1,24 @@
 var CartController = {
 	
 	init: function () {
-		ProductController.showList();
+		ProductCart.showList();
         ProductController.initItemIntoCart();
+	},	
+	
+	deleteProduct: function(imgDelete) {
+		var 
+			productName = imgDelete.dataset.productname,
+			productId = imgDelete.dataset.productid;
+		
+		if(confirm('Are you sure to delete ' + productName + '?')) {
+			ProductService.remove(productId, function(isDeleted) {
+				if(isDeleted) {
+					$(imgDelete).parents('dl').remove();
+				}
+			})
+		}
 	},
-			
+	
 	showList: function () {
         var list = ProductService.getList(function(list) {
             list.forEach(function(product) {
