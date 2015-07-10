@@ -92,13 +92,16 @@ h1 {
     width: 180px;
     display: inline-block;
     background-color: purple;
-    color: white;
     padding: 10px 20px;
-    text-decoration: none;
     box-sizing: border-box;
-    font-family: Helvetica, Arial, sans-serif;
     bottom: 100px;
     left: 200px;
+}
+
+.cart div a{
+    color: white;
+    text-decoration: none;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 .cart div:hover {
