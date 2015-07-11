@@ -32,7 +32,6 @@ var CartController = {
             tr = CartController.createTR(product);
         
 		tbody.appendChild(tr);
-        ddName.appendChild(imgAddToCart);
 	},
 	
 	createImage: function(imageLocation, textLegend) {

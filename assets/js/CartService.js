@@ -3,9 +3,10 @@ var CartService = {
 	list: [],
     
     add: function (id) {
-        var product = CartService.getProductById(id);
-        CartService.list.push(product);
-        CartService.saveToLocalStorage();
+        CartService.getProductById(id, function(product) {
+            CartService.list.push(product);
+            CartService.saveToLocalStorage();
+        });
 	},
 	
 	getList: function() {
@@ -13,7 +14,7 @@ var CartService = {
         return CartService.list;
 	},
     
-    getProductById: function(id) {
+    getProductById: function(id, callback) {
 		$.ajax({
 			type: 'GET',
 			url: 'assets/php/getProductById.php',
@@ -23,8 +24,7 @@ var CartService = {
                 id: id
             },
 			success: function(product) {
-                alert(product);
-				return product;
+				callback(product);
 			},
             error: function(jqXHR, textStatus, errorThrown) {
                 alert('Erro ao tentar ação!');
@@ -37,11 +37,11 @@ var CartService = {
 	
 	saveToLocalStorage: function () {
 		var listJson = JSON.stringify(CartService.list);
-		window.localStorage.setItem('productlist', listJson);
+		window.sessionStorage.setItem('productlist', listJson);
 	},
 	
 	retrieveFromLocalStorage: function () {
-		var listJson = window.localStorage.getItem('productlist');
+		var listJson = window.sessionStorage.getItem('productlist');
 		if(listJson) {
 			CartService.list = JSON.parse(listJson);
 		}
