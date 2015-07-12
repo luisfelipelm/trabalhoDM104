@@ -1,6 +1,8 @@
 var CartController = {
 	
-	init: function () {
+    total: 0,
+    
+    init: function () {
         CartController.getItemsIntoCart();
         CartController.showList();
 	},	
@@ -23,7 +25,10 @@ var CartController = {
         var list = CartService.getList();
         list.forEach(function(product) {
             CartController.addToHTML(product);
+            CartController.total += product.value;
         });
+        
+        CartController.crateTotal();
 	},
 	
 	addToHTML: function (product) {
@@ -46,9 +51,11 @@ var CartController = {
 		var tr = document.createElement('tr'),
             tdId = CartController.createTD(product.id),
             tdNome = CartController.createTD(product.produto),
-            tdQuantity = CartController.createTD('0'),
+            inputQuantity = CartController.createInputText('1', 'text'),
+            tdQuantity = CartController.createTD(''),
             tdValue = CartController.createTD(product.valor);
-        
+
+        tdQuantity.appendChild(inputQuantity);
         tr.appendChild(tdId);
         tr.appendChild(tdNome);
         tr.appendChild(tdQuantity);
@@ -61,6 +68,18 @@ var CartController = {
 		var td = document.createElement('td');
 		td.innerHTML = value;
 		return td;
+	},
+    
+    createInputText: function(value, type) {
+        var inputQuantity = document.createElement('input');
+		inputQuantity.type = type;
+        inputQuantity.value = value;
+		return inputQuantity;
+	},
+    
+    crateTotal: function() {
+        var tdTotal = document.getElementById('total');
+        tdTotal.innerHTML = CartController.total;
 	},
 	
 	createAddToCart: function(product) {
@@ -85,16 +104,12 @@ var CartController = {
         CartService.addId(productId);
         quantityItem =  parseInt(quantityItem) + 1;
         $('#itemQuantity').text(quantityItem);
-        alert(CartService.getListId());
 	},
     
     getItemsIntoCart: function(product) {
         var itemsQuantity = CartService.getList().length;
-        alert(itemsQuantity);
 		document.getElementById('itemQuantity').innerHTML = parseInt(itemsQuantity);
 	}
-
-
 };
 
 //initialization
