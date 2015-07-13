@@ -12,7 +12,7 @@ function getProductById()  {
 	$db = getDB();
 	$product = $db->produtos()->where('id', $id);
     
-	echo json_encode($product);
+	echo json_encode($product[$id]);
 
 }
 
