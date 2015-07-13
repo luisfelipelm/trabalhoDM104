@@ -4,6 +4,8 @@ CREATE TABLE `trabalhodm104`.`pedido` (
   `cliente_id` INT NOT NULL,
   `quantidade` INT NOT NULL,
   `valor_total` DECIMAL NOT NULL,
+  `data_pedido` DATETIME NOT NULL,
+  `numero_pedido` BIGINT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   INDEX `produto_fk_idx` (`produto_id` ASC),
