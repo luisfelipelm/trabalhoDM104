@@ -21,5 +21,4 @@ function getProducts()  {
 	echo json_encode($products);
 }
 
-//echo json_encode(array('name'=>'crislaine'));
 ?>

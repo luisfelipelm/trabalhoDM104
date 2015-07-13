@@ -12,9 +12,20 @@ var ProductService = {
 			},
             error: function(jqXHR, textStatus, errorThrown) {
                 alert('Erro ao tentar ação!');
-                alert(jqXHR);
-                alert(textStatus);
-                alert(errorThrown);
+            },
+		});
+	},
+    
+    getProductById: function(callback) {
+		$.ajax({
+			type: 'GET',
+			url: 'assets/php/productDAO.php',
+            dataType: 'json',
+			success: function(list) {
+				callback(list);
+			},
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Erro ao tentar ação!');
             },
 		});
 	},

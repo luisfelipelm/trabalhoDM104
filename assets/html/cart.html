@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="pt-BR">
+<head>
+<meta charset="UTF-8" /> 
+<title>Portal web para compras e acompanhamentos de produtos</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster" />
+<link rel="stylesheet" href="../css/main.css" />
+
+</head>
+ 
+<body>
+
+<header>
+	<h1>Virtual Store</h1>
+</header>
+
+<section id="cart" class="cart">
+    <img src="../images/cart.jpg" alt="Itens do carrinho">
+    <p> <span id="itemQuantity" class="itemQuantity"></span> Itens no carrinho</p> 
+</section>
+
+
+<section id="cartProducts">
+        <table id="cartProductTable">
+           <caption>Itens do Carrinho de Compras</caption>
+           <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="3">Total:</td>
+                    <td id="total" class="total"></td>
+                </tr>
+            </tfoot>
+            <tbody id="products"></tbody>
+        </table>
+</section>
+<script src="../php/login.php"></script>
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../js/CartService.js"></script>
+<script src="../js/ProductMainService.js"></script>
+<script src="../js/CartController.js"></script>
+</body>
+</html>

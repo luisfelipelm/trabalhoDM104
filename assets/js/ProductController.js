@@ -2,6 +2,7 @@ var ProductController = {
 	
 	init: function () {
 		ProductController.showList();
+        ProductController.initItemIntoCart();
 	},
 		
 	addProduct: function(form) {
@@ -44,28 +45,30 @@ var ProductController = {
 			dl = document.createElement('dl'),
 			dt = ProductController.createDT(product),
 			ddName = ProductController.createDD(product.produto, 'name');
-			ddDescription = ProductController.createDD(product.descricao, 'description');
+			ddPrice = ProductController.createDD('R$ ' + product.valor, 'price');
             imgAddToCart = ProductController.createAddToCart(product),
 		
         ddName.appendChild(imgAddToCart);
 		
 		dl.appendChild(dt);
 		dl.appendChild(ddName);
-		dl.appendChild(ddDescription);
+		dl.appendChild(ddPrice);
 		
 		productList.appendChild(dl);
 	},
 	
-	createImage: function(imageLocation) {
+	createImage: function(imageLocation, textLegend) {
 		var img = document.createElement('img');
 		img.src = imageLocation;
+        img.title = textLegend;
 		return img;
 	},
+
 	
 	createDT: function(product) {
 		var 
 			dt = document.createElement('dt'),
-			img = ProductController.createImage('assets/images/product.png');
+			img = ProductController.createImage('assets/images/product.png', product.produto);
 		
 		dt.appendChild(img);
 		dt.className = "photo";
@@ -83,17 +86,34 @@ var ProductController = {
 	},
 	
 	createAddToCart: function(product) {
-		var imgDelete = ProductController.createImage('assets/images/addToCart.png');
+		var imgAddToCart = ProductController.createImage('assets/images/addToCart.png', 'Adicionar ao Carrinho');
 		
-		imgDelete.setAttribute('data-productid', product.id);
-		imgDelete.setAttribute('data-productname', product.produto);
+		imgAddToCart.setAttribute('data-productid', product.id);
+		imgAddToCart.setAttribute('data-productname', product.produto);
 		
-		imgDelete.addEventListener('click', function() {
-			ProductController.deleteProduct(this);
+		imgAddToCart.addEventListener('click', function() {
+			ProductController.incrementItemIntoCart(this);
 		});
 		
-		return imgDelete;
+		return imgAddToCart;
+	},
+    
+    incrementItemIntoCart: function(product) {
+		var
+			quantityItem = document.getElementById('itemQuantity').innerHTML,
+            itemsId = new Array(),
+			productId = product.dataset.productid;
+        
+        CartService.add(productId);
+        quantityItem =  parseInt(quantityItem) + 1;
+        $('#itemQuantity').text(quantityItem);
+        alert(CartService.getList().length);
+	},
+    
+    initItemIntoCart: function(product) {
+		document.getElementById('itemQuantity').innerHTML = '0';
 	}
+
 
 };
 
