@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="pt-BR">
+<head>
+<meta charset="UTF-8" /> 
+<title>Portal web para compras e acompanhamentos de produtos</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster" />
+<link rel="stylesheet" href="../css/main.css" />
+
+</head>
+ 
+<body>
+
+<header>
+	<h1>Virtual Store</h1>
+</header>
+
+<form class="form-horizontal" method="post" action="../php/relatorio.php">
+  <div class="control-group">
+    <label class="control-label" for="inputPedido">Número do pedido:</label>
+    <div class="controls">
+      <input id="pedido" name="pedido" type="text" placeholder="Digite o numero do seu pedido..." />
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <button class="btn" type="submit">Pesquisar</button>
+    </div>
+  </div>
+  <div>
+      <p>
+          <a href="assets/html/cadastro.html">Cadastro</a>
+      </p>
+  </div>
+</form>
+</body>
+</html>

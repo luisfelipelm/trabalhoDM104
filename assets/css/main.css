@@ -61,3 +61,8 @@ h1 {
 	text-indent: 10px;
 }
 
+.control-group {
+	background:#FFFEE6;
+	color:#8F5700;
+	padding:10px;
+}
