@@ -4,6 +4,7 @@
 <meta charset="UTF-8" /> 
 <title>Portal web para compras e acompanhamentos de produtos</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster" />
+
 <link rel="stylesheet" href="../css/main.css" />
 
 </head>
@@ -39,6 +40,21 @@
             </tfoot>
             <tbody id="products"></tbody>
         </table>
+</section>
+
+<section id="frete">
+   <form class="pure-form pure-form-aligned">
+	<fieldset>
+		<div class="pure-control-group">
+			<label for="name">CEP</label>
+			<input id="cep" type="text" placeholder="cep" required>
+		</div>
+
+		<div class="pure-controls">
+			<button type="submit" class="pure-button pure-button-primary">Calcular</button>
+		</div>
+	</fieldset>
+   </form>
 </section>
 <script src="../php/login.php"></script>
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>

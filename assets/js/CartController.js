@@ -1,6 +1,6 @@
 var CartController = {
 	
-    total: 0,
+    total: parseFloat('0.0'),
     
     init: function () {
         CartController.getItemsIntoCart();
@@ -22,12 +22,12 @@ var CartController = {
 	},
 	
 	showList: function () {
-        var list = CartService.getList();
+        var list = CartService.getList(), sum = 0.0;
         list.forEach(function(product) {
             CartController.addToHTML(product);
-            CartController.total += product.value;
+            sum = sum + parseFloat(product.valor);
         });
-        
+        CartController.total = sum;
         CartController.crateTotal();
 	},
 	
@@ -79,7 +79,7 @@ var CartController = {
     
     crateTotal: function() {
         var tdTotal = document.getElementById('total');
-        tdTotal.innerHTML = CartController.total;
+        tdTotal.innerHTML = 'R$ ' + CartController.total;
 	},
 	
 	createAddToCart: function(product) {
