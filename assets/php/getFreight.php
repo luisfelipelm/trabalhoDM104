@@ -1,12 +1,12 @@
 <?php
-frete_correios();
-function frete_correios()
+getFrete();
+function getFrete()
 {
   
    $cepDestination = $_GET['cepDestination'];
    $weight = $_GET['weight'];
    
-   $cepOrigin = '37540000';// CEP DE QUEM ESTÁ ENVIANDO (LOJA - SE VC QUISER PODE PUXAR DO BANCO DE DADOS)
+   $cepOrigin = '37540000';
 
    /*
     * TIPOS DE FRETE
@@ -25,10 +25,10 @@ function frete_correios()
     *
     */
  
-   // ESTE ARRAYS PARA O RETORNO (NO MEU CASO SÓ QUERO MOSTRAR ESTES)
+
    $rotulo = array('41106'=>'PAC','40010'=>'SEDEX');
  
-   //$webservice = 'http://shopping.correios.com.br/wbm/shopping/script/CalcPrecoPrazo.asmx?WSDL';// URL ANTIGA
+   //$webservice
    $webservice = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx?WSDL';
  
    // TORNA EM OBJETO AS VARIAVEIS

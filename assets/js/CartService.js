@@ -14,6 +14,27 @@ var CartService = {
         return CartService.list;
 	},
     
+    getFreight: function(weight, cep, callback) {
+		$.ajax({
+			type: 'GET',
+			url: 'assets/php/getFreight.php',
+            dataType: 'json',
+            data: {
+                cepDestination: cep,
+                weight: weight
+            },
+			success: function(freightList) {
+				callback(freightList);
+			},
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Erro ao tentar ação!');
+                alert(jqXHR);
+                alert(textStatus);
+                alert(errorThrown);
+            },
+		});
+	},
+    
     getProductById: function(id, callback) {
 		$.ajax({
 			type: 'GET',

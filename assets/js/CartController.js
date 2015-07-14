@@ -2,9 +2,12 @@ var CartController = {
 	
     total: parseFloat('0.0'),
     
+    totalWeight: parseFloat('0.0'),
+    
     init: function () {
         CartController.getItemsIntoCart();
         CartController.showList();
+        CartController.addActionToFreightButton();
 	},	
 	
 	deleteProduct: function(imgDelete) {
@@ -22,12 +25,18 @@ var CartController = {
 	},
 	
 	showList: function () {
-        var list = CartService.getList(), sum = 0.0;
+        var list = CartService.getList(),
+            sum = 0.0,
+            sumWeight = 0.0;
+        
         list.forEach(function(product) {
             CartController.addToHTML(product);
             sum = sum + parseFloat(product.valor);
+            sumWeight = sumWeight + parseFloat(product.peso);
         });
+        
         CartController.total = sum;
+        CartController.totalWeight = sumWeight;
         CartController.crateTotal();
 	},
 	
@@ -109,6 +118,30 @@ var CartController = {
     getItemsIntoCart: function(product) {
         var itemsQuantity = CartService.getList().length;
 		document.getElementById('itemQuantity').innerHTML = parseInt(itemsQuantity);
+	},
+    
+    calculateFreight: function(product) {
+        CartService.getFreight(CartController.totalWeight, function(freightList) {
+ 
+        });
+	},
+    
+    creatingRadioButton: function(freight) {
+         var fieldset =  document.getElementById('freightFields'),
+             radioButton = document.createElement('input');   
+        
+        radioButton.type = 'radio';
+        radioButton.value = freight.tipo +  ": " + freight.valor;
+        
+        fieldset.appendChild(radioButton);
+	},
+    
+    addActionToFreightButton: function() {
+        var button =  document.getElementById('freightButton');
+
+		button.addEventListener('click', function() {
+           CartController.calculateFreight();
+		});
 	}
 };
 

@@ -42,19 +42,17 @@
         </table>
 </section>
 
-<section id="frete">
-   <form class="pure-form pure-form-aligned">
-	<fieldset>
-		<div class="pure-control-group">
-			<label for="name">CEP</label>
-			<input id="cep" type="text" placeholder="cep" required>
-		</div>
-
-		<div class="pure-controls">
-			<button type="submit" class="pure-button pure-button-primary">Calcular</button>
-		</div>
+<section id="freight">
+  <div class="freight">
+   <form>
+	<fieldset id="freightFields">
+	    <legend>Frete:</legend>
+		<label for="name">CEP</label>
+		<input id="cep" type="text" placeholder="CEP Only Numbers" required>
+		<button type="submit" name="freightButton" id="freightButton" class="pure-button pure-button-primary">Calcular</button>		
 	</fieldset>
    </form>
+  </div>
 </section>
 <script src="../php/login.php"></script>
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>

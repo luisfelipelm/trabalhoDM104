@@ -5,31 +5,6 @@ var ProductController = {
         ProductController.initItemIntoCart();
 	},
 		
-	addProduct: function(form) {
-		var product = {
-			name: form.name.value,
-			email: form.email.value
-		};
-		ProductService.add(product, function(addedProduct){
-			ProductController.addToHTML(addedProduct);	
-			ProductController.clearForm();
-		});
-	},
-	
-	deleteProduct: function(imgDelete) {
-		var 
-			productName = imgDelete.dataset.productname,
-			productId = imgDelete.dataset.productid;
-		
-		if(confirm('Are you sure to delete ' + productName + '?')) {
-			ProductService.remove(productId, function(isDeleted) {
-				if(isDeleted) {
-					$(imgDelete).parents('dl').remove();
-				}
-			})
-		}
-	},
-	
 	showList: function () {
         var list = ProductService.getList(function(list) {
             list.forEach(function(product) {
@@ -107,7 +82,6 @@ var ProductController = {
         CartService.add(productId);
         quantityItem =  parseInt(quantityItem) + 1;
         $('#itemQuantity').text(quantityItem);
-        alert(CartService.getList().length);
 	},
     
     initItemIntoCart: function(product) {
