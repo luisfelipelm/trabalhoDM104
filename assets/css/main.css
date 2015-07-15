@@ -66,3 +66,24 @@ h1 {
 	color:#8F5700;
 	padding:10px;
 }
+
+
+.table_ { 
+  border-collapse: collapse; 
+}
+
+tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+
+th { 
+  background: #FFFEE6; 
+  color: white; 
+  font-weight: bold; 
+}
+
+td, th { 
+  padding: 6px; 
+  border: 1px solid #ccc; 
+  text-align: left; 
+}

@@ -7,22 +7,23 @@
 <body>
 
 <?php
-session_start();
+    session_start();
     $login= $_POST ["login"];
     $senha= $_POST ["senha"];
 
 
 	include '../php/conn.php';
 	
-	$rs = mysql_query("SELECT `login` FROM `clientes` WHERE `login` = '$login' and `senha` = '$senha' ");
+	$rs = mysql_query("SELECT `login`, `id` FROM `clientes` WHERE `login` = '$login' and `senha` = '$senha' ");
 	$row = mysql_fetch_row($rs);
 
     if($row>0){
         $_SESSION['login'] = $login;
+        $_SESSION['idCliente'] = $row[1];
         if ($login == "admin")
             header("Location: ../html/menuAdmin.html");
         else
-            header("Location: ../html/pedidos.html");
+            header("Location: ../../pedidos.html");
         die();
     } else {
 		echo "Login e/ou senha invalido(s).";
