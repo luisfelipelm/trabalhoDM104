@@ -17,7 +17,7 @@ var CartService = {
     getFreight: function(weight, cep, callback) {
 		$.ajax({
 			type: 'GET',
-			url: 'assets/php/getFreight.php',
+			url: '../php/getFreight.php',
             dataType: 'json',
             data: {
                 cepDestination: cep,

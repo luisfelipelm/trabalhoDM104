@@ -15,12 +15,14 @@
 </header>
 
 <section id="cart" class="cart">
+    
     <img src="assets/images/cart.jpg" alt="Itens do carrinho">
     <p> <span id="itemQuantity" class="itemQuantity"></span> Itens no carrinho</p> 
     <div id="finishOderButtom"><a href="assets/html/cart.html">Fechar Pedido</a></div>
+    <p id="userMessage"></p>
 </section>
 
-<form class="form-horizontal" method="post" action="assets/php/login.php">
+<form class="form-horizontal" id="formLogin" method="POST">
   <div class="control-group">
     <label class="control-label" for="inputEmail">Login</label>
     <div class="controls">
@@ -30,13 +32,13 @@
   <div class="control-group">
     <label class="control-label" for="inputPassword">Senha</label>
     <div class="controls">
-      <input id="senha" name="senha" type="password" placeholder="Digite a sua senha..." />
+      <input id="psswd" name="senha" type="password" placeholder="Digite a sua senha..." />
     </div>
   </div>
   <div class="control-group">
     <div class="controls">
       <label class="checkbox"><input type="checkbox" /> Lembrar senha</label>
-      <button class="btn" type="submit">Acessar</button>
+      <input class="btn" id="loginButton" type="submit" value="Acessar"/>
     </div>
   </div>
   <div>
@@ -52,6 +54,8 @@
 </section>
 <script src="assets/php/login.php"></script>
 <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="assets/js/LoginService.js"></script>
+<script src="assets/js/LoginController.js"></script>
 <script src="assets/js/CartService.js"></script>
 <script src="assets/js/ProductMainService.js"></script>
 <script src="assets/js/ProductController.js"></script>

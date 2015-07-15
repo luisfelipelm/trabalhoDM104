@@ -44,18 +44,20 @@
 
 <section id="freight">
   <div class="freight">
-   <form>
+   <form id="freightForm">
 	<fieldset id="freightFields">
 	    <legend>Frete:</legend>
 		<label for="name">CEP</label>
 		<input id="cep" type="text" placeholder="CEP Only Numbers" required>
-		<button type="submit" name="freightButton" id="freightButton" class="pure-button pure-button-primary">Calcular</button>		
+		<input type="submit" name="freightButton" id="freightButton" value="Calcular" class="pure-button pure-button-primary"/>		
 	</fieldset>
    </form>
   </div>
 </section>
 <script src="../php/login.php"></script>
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../js/LoginService.js"></script>
+<script src="../js/LoginController.js"></script>
 <script src="../js/CartService.js"></script>
 <script src="../js/ProductMainService.js"></script>
 <script src="../js/CartController.js"></script>

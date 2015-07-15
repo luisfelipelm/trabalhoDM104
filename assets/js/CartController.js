@@ -7,8 +7,16 @@ var CartController = {
     init: function () {
         CartController.getItemsIntoCart();
         CartController.showList();
-        CartController.addActionToFreightButton();
+        CartController.setForm();
 	},	
+    
+    setForm: function () {
+		var form = document.getElementById('freightForm');
+		form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            CartController.calculateFreight();   
+		});
+	},
 	
 	deleteProduct: function(imgDelete) {
 		var 
@@ -121,8 +129,9 @@ var CartController = {
 	},
     
     calculateFreight: function(product) {
-        CartService.getFreight(CartController.totalWeight, function(freightList) {
- 
+        var cep = document.getElementById('cep').value;
+        CartService.getFreight(CartController.totalWeight, cep, function(freightList) {
+            alert(freightList);
         });
 	},
     
@@ -135,14 +144,7 @@ var CartController = {
         
         fieldset.appendChild(radioButton);
 	},
-    
-    addActionToFreightButton: function() {
-        var button =  document.getElementById('freightButton');
 
-		button.addEventListener('click', function() {
-           CartController.calculateFreight();
-		});
-	}
 };
 
 //initialization
