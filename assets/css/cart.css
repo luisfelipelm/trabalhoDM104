@@ -23,7 +23,7 @@
     font-size: 20px;
 }
 
-.cart div {
+.cart div, .sendOrder {
     position: relative;
     font-size: 20px;
     border-radius: 4px;
@@ -37,13 +37,13 @@
     left: 200px;
 }
 
-.cart div a{
+.cart div a, .sendOrder{
     color: white;
     text-decoration: none;
     font-family: Helvetica, Arial, sans-serif;
 }
 
-.cart div:hover {
+.cart div:hover, .sendOrder {
     background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,.15));
     cursor: pointer;
 }
@@ -83,3 +83,9 @@ td, th {
   color: red;
   font-size:  30px;
 }
+
+.sendOrder { 
+    left: 1100px;
+    top: 20px;
+}
+

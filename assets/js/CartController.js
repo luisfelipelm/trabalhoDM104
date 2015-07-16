@@ -8,14 +8,23 @@ var CartController = {
         CartController.getItemsIntoCart();
         CartController.showList();
         CartController.setForm();
+        CartController.sendOrder();
 	},	
     
     setForm: function () {
-		var form = document.getElementById('freightForm');
+		var sendButton = document.getElementById('freightForm');
 		form.addEventListener('submit', function(event) {
             event.preventDefault();
             CartController.calculateFreight();   
 		});
+	},
+    
+    sendOrder: function () {
+        var form = document.getElementById('sendOrder');
+		form.addEventListener('click', function(event) {
+            CartController.getOrderValues();   
+		});
+
 	},
 	
 	deleteProduct: function(imgDelete) {
@@ -170,6 +179,10 @@ var CartController = {
     
     calculateTotal: function(value) {
          CartController.createTotal(parseFloat(value) + CartController.total);    
+    },
+    
+    getOrderValues: function(value) {
+          
     }
 };
 

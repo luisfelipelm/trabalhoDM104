@@ -55,6 +55,29 @@ var CartService = {
             },
 		});
 	},
+
+    saveOrder: function(productId, clientId, quantity, totalValue) {
+		$.ajax({
+			type: 'GET',
+			url: '../php/orderDAO.php',
+            dataType: 'json',
+            data: {
+                product_id: productId,
+                client_id: clientId,
+                quantity: quantity,
+                total: totalValue
+            },
+			success: function(freightList) {
+				alert("Pedido enviado com sucesso!");
+			},
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Erro ao tentar ação!');
+                alert(jqXHR);
+                alert(textStatus);
+                alert(errorThrown);
+            },
+		});
+	},
 	
 	saveToLocalStorage: function () {
 		var listJson = JSON.stringify(CartService.list);
