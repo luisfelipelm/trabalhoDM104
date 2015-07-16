@@ -6,6 +6,15 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster" />
 <link rel="stylesheet" href="assets/css/main.css" />
 
+
+<script type="text/javascript">
+    function session(){
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "assets/php/setSession.php?variable=" + document.getElementById('login').value, true);
+        xmlhttp.send();
+    }
+</script>
+
 </head>
  
 <body>
@@ -20,6 +29,15 @@
     <p> <span id="itemQuantity" class="itemQuantity"></span> Itens no carrinho</p> 
     <div id="finishOderButtom"><a href="assets/html/cart.html">Fechar Pedido</a></div>
     <p id="userMessage"></p>
+    <p id="linkAlteraDados">
+        <a href="assets/html/alterarCadastro.html" id="aLinkAlteraDados"></a>
+    </p>
+    <p id="linkRelatorio">
+        <a href="assets/html/relatorioCliente.html" id="aLinkRelatorio"></a>
+    </p>
+    <p id="linkMenuAdmin">
+        <a href="assets/html/menuAdmin.html" id="aLinkMenuAdmin"></a>
+    </p>
 </section>
 
 <form class="form-horizontal" id="formLogin" method="POST">
@@ -38,14 +56,11 @@
   <div class="control-group">
     <div class="controls">
       <label class="checkbox"><input type="checkbox" /> Lembrar senha</label>
-      <input class="btn" id="loginButton" type="submit" value="Acessar"/>
+      <input class="btn" id="loginButton" type="submit" value="Acessar" onclick="session()" />
     </div>
     <div>
       <p>
             <a href="assets/html/cadastro.html">Cadastro</a>
-      </p>
-      <p>
-            <a href="relatorioCliente.html">Relatório</a>
       </p>
     </div>
   </div>

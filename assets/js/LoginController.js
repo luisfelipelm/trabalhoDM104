@@ -27,16 +27,27 @@ var LoginController = {
     
     createLoginMessage: function () {
         var userMessage = document.getElementById('userMessage'),
+            linkRelatorio = document.getElementById('aLinkRelatorio'),
+            linkAlteraDados = document.getElementById('aLinkAlteraDados'),
+            linkMenuAdmin = document.getElementById('aLinkMenuAdmin'),
             user = LoginService.getUser();
         
         if(user == ''){
             userMessage.innerHTML = 'Você não está logado ainda!' + LoginService.getUser();
         }else{
             userMessage.innerHTML = 'Você está logado como: ' + LoginService.getUser();
+            if(user === 'admin'){
+                linkMenuAdmin.innerHTML = 'Menu Admin';
+                linkAlteraDados.innerHTML = '';
+                linkRelatorio.innerHTML = '';
+            }
+            else{
+                linkMenuAdmin.innerHTML = '';
+                linkAlteraDados.innerHTML = 'Alterar dados';
+                linkRelatorio.innerHTML = 'Relatorio compras';
+            }        
         }
-
-	}
-	
+	}	
 };	
 //initialization
 LoginController.init();
