@@ -45,7 +45,7 @@ var CartController = {
         
         CartController.total = sum;
         CartController.totalWeight = sumWeight;
-        CartController.crateTotal();
+        CartController.createTotal(CartController.total);
 	},
 	
 	addToHTML: function (product) {
@@ -94,9 +94,9 @@ var CartController = {
 		return inputQuantity;
 	},
     
-    crateTotal: function() {
+    createTotal: function(value) {
         var tdTotal = document.getElementById('total');
-        tdTotal.innerHTML = 'R$ ' + CartController.total;
+        tdTotal.innerHTML = 'R$ ' + value;
 	},
 	
 	createAddToCart: function(product) {
@@ -131,20 +131,46 @@ var CartController = {
     calculateFreight: function(product) {
         var cep = document.getElementById('cep').value;
         CartService.getFreight(CartController.totalWeight, cep, function(freightList) {
-            alert(freightList);
+            CartController.clearRadioButton();
+            CartController.creatingRadioButton(freightList['pac']);
+            CartController.creatingRadioButton(freightList['sedex']);
         });
 	},
     
     creatingRadioButton: function(freight) {
          var fieldset =  document.getElementById('freightFields'),
-             radioButton = document.createElement('input');   
+             radioButton = document.createElement('input'),
+             label = document.createElement("label");;   
         
         radioButton.type = 'radio';
-        radioButton.value = freight.tipo +  ": " + freight.valor;
+        radioButton.id = freight.tipo;
+        radioButton.value = freight.valor;
+        radioButton.name = 'freight';
         
-        fieldset.appendChild(radioButton);
+        radioButton.addEventListener('change', function(event) {
+                CartController.calculateTotal(event.target.value);
+		});
+        
+        label.appendChild(radioButton);
+        label.appendChild(document.createTextNode(freight.tipo +  ": R$ " + freight.valor));
+        
+        fieldset.appendChild(label);
 	},
-
+    
+    clearRadioButton: function() {
+         var fieldset =  document.getElementById('freightFields'),
+             radioButtonPac = document.getElementById('PAC'),
+             radioButtonSedex = document.getElementById('SEDEX');   
+        
+        if (radioButtonPac != null && radioButtonPac != null) {
+            fieldset.removeChild(radioButtonPac);
+            fieldset.removeChild(radioButtonSedex);
+        }
+    },
+    
+    calculateTotal: function(value) {
+         CartController.createTotal(parseFloat(value) + CartController.total);    
+    }
 };
 
 //initialization
