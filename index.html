@@ -13,6 +13,20 @@
         xmlhttp.open("GET", "assets/php/setSession.php?variable=" + document.getElementById('login').value, true);
         xmlhttp.send();
     }
+    function removeSession(){
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "assets/php/removeSession.php", true);
+        xmlhttp.send();
+        document.getElementById("sairButton").disabled = true;
+        linkRelatorio = document.getElementById('aLinkRelatorio');
+        linkAlteraDados = document.getElementById('aLinkAlteraDados');
+        linkMenuAdmin = document.getElementById('aLinkMenuAdmin');
+        linkRelatorio.innerHTML = '';
+        linkAlteraDados.innerHTML = '';
+        linkMenuAdmin.innerHTML = '';
+        window.sessionStorage.setItem('user','');
+        location.reload();
+    }
 </script>
 
 </head>
@@ -37,6 +51,9 @@
     </p>
     <p id="linkMenuAdmin">
         <a href="assets/html/menuAdmin.html" id="aLinkMenuAdmin"></a>
+    </p>
+    <p>
+        <input class="btn" id="sairButton" type="submit" value="Sair" disabled onclick="removeSession()" />
     </p>
 </section>
 

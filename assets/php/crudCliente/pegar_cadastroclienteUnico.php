@@ -4,14 +4,14 @@
 	$rows = isset($_POST['rows']) ? intval($_POST['rows']) : 10;
 	$offset = ($page-1)*$rows;
 	$result = array();
-    $id = $_SESSION['login'];
+    $login = $_SESSION['login'];
 
 	include '../../php/conn.php';
 	
-	$rs = mysql_query("select count(*) from clientes where login = '$id' ");
+	$rs = mysql_query("select count(*) from clientes where login = '$login' ");
 	$row = mysql_fetch_row($rs);
 	$result["total"] = $row[0];
-	$rs = mysql_query("select * from clientes where login = '$id' limit $offset,$rows");
+	$rs = mysql_query("select * from clientes where login = '$login' limit $offset,$rows");
 	
 	$items = array();
 	while($row = mysql_fetch_object($rs)){

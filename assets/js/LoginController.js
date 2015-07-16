@@ -40,11 +40,13 @@ var LoginController = {
                 linkMenuAdmin.innerHTML = 'Menu Admin';
                 linkAlteraDados.innerHTML = '';
                 linkRelatorio.innerHTML = '';
+                document.getElementById("sairButton").disabled = false;
             }
             else{
                 linkMenuAdmin.innerHTML = '';
                 linkAlteraDados.innerHTML = 'Alterar dados';
                 linkRelatorio.innerHTML = 'Relatorio compras';
+                document.getElementById("sairButton").disabled = false;
             }        
         }
 	}	
