@@ -24,7 +24,7 @@
     else $news= "";
     $sexo= $_POST ["sexo"];
 
-    include '../php/conn.php';
+    include '../../php/conn.php';
 	
 	$rs = mysql_query("SELECT `login` FROM `clientes` WHERE `login` = '$login' ");
 	$row = mysql_fetch_row($rs);
