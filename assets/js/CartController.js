@@ -24,14 +24,26 @@ var CartController = {
     sendOrder: function () {
         var sendButton = document.getElementById('sendOrder'),
             list = CartService.getList();
-        
+
 		sendButton.addEventListener('click', function(event) {
-            var orderNumber = Math.floor(Math.random() * 10000) - 1000;
-            list.forEach(function(product) {
-                CartController.getOrderValuesAndSave(product.id, orderNumber); 
-            });  
+            var orderNumber = Math.floor(Math.random() * 10000) - 1000,
+                clientId = LoginService.getUserId(),
+                freight = CartController.freight;
+            
+            if (clientId === '' ||  clientId === null){
+                alert('Você não está Logado. Por favor, faça login antes de enviar o pedido!');
+                
+            }else if (freight === '' || freight === null || freight === 0){
+                alert('Calcule o frete antes de enviar o pedido!');
+                
+            } else {
+                list.forEach(function(product) {
+                    CartController.getOrderValuesAndSave(product.id, orderNumber, clientId, freight); 
+                });  
           
-            alert('Pedido enviado com sucesso!');
+                alert('Pedido enviado com sucesso!');
+            }
+
 		});
 	},
 	
@@ -207,13 +219,11 @@ var CartController = {
          CartController.createTotal(total);    
     },
     
-    getOrderValuesAndSave: function(productId, orderNumber) {
-        var clientId = LoginService.getUserId(),
-            quantity = document.getElementById('product' + productId).value,
-            total = document.getElementById('totalProd' + productId).innerHTML,
-            freight = CartController.freight;
+    getOrderValuesAndSave: function(productId, orderNumber, clientId, freight) {
+        var quantity = document.getElementById('product' + productId).value,
+            total = document.getElementById('totalProd' + productId).innerHTML;
         
-            CartService.saveOrder(productId, clientId, quantity, total, freight, orderNumber);
+            CartService.saveOrder(productId, clientId, quantity, total, freight, orderNumber);          
     }
 };
 

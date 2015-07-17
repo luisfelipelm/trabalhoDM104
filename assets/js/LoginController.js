@@ -70,6 +70,7 @@ var LoginController = {
         linkAlteraDados.innerHTML = '';
         linkMenuAdmin.innerHTML = '';
         window.sessionStorage.setItem('user','');
+        window.sessionStorage.setItem('userId','');
         window.location.reload();
     }
 
