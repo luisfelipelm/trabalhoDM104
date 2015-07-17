@@ -6,7 +6,7 @@
 	$result = array();
     $login = $_SESSION['login'];
 
-	include '../../php/conn.php';
+	include '../conn.php';
 	
 	$rs = mysql_query("select count(*) from clientes where login = '$login' ");
 	$row = mysql_fetch_row($rs);

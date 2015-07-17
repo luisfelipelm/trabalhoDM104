@@ -69,7 +69,7 @@ var CartService = {
             },
 			success: function() {
 				return true;
-			},
+            },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert('Erro ao tentar ação!');
                 return false;              
