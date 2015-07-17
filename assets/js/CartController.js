@@ -26,9 +26,9 @@ var CartController = {
             list = CartService.getList();
         
 		sendButton.addEventListener('click', function(event) {
+            var orderNumber = Math.floor(Math.random() * 10000) - 1000;
             list.forEach(function(product) {
-                CartController.getOrderValuesAndSave(product.id); 
-
+                CartController.getOrderValuesAndSave(product.id, orderNumber); 
             });  
           
             alert('Pedido enviado com sucesso!');
@@ -193,13 +193,13 @@ var CartController = {
          CartController.createTotal(parseFloat(value) + CartController.total);    
     },
     
-    getOrderValuesAndSave: function(productId) {
+    getOrderValuesAndSave: function(productId, orderNumber) {
         var clientId = LoginService.getUserId(),
             quantity = document.getElementById('product' + productId).value,
             total = document.getElementById('totalProd' + productId).innerHTML,
             freight = CartController.freight;
         
-            CartService.saveOrder(productId, clientId, quantity, total, freight);
+            CartService.saveOrder(productId, clientId, quantity, total, freight, orderNumber);
     }
 };
 

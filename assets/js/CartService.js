@@ -56,7 +56,7 @@ var CartService = {
 		});
 	},
 
-    saveOrder: function(productId, clientId, quantity, totalValue, freight) {
+    saveOrder: function(productId, clientId, quantity, totalValue, freight, orderNumber) {
 		$.ajax({
 			type: 'POST',
 			url: '../php/orderDAO.php',
@@ -65,7 +65,8 @@ var CartService = {
                 client_id: clientId,
                 quantity: quantity,
                 total: totalValue,
-                freight: freight
+                freight: freight,
+                orderNumber: orderNumber
             },
 			success: function() {
 				return true;

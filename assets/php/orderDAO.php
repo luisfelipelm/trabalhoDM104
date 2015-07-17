@@ -12,7 +12,7 @@ function saveOrder()  {
     $total = $_POST ["total"];
     $freight = $_POST ["freight"];
     $order_date = date('Y-m-d');
-    $order_number = rand(1000,1000000);
+    $order_number = $_POST ["orderNumber"];
     
     $order = array(
 			'produto_id' => $product_id,
