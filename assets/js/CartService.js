@@ -66,7 +66,8 @@ var CartService = {
                 client_id: clientId,
                 quantity: quantity,
                 total: totalValue,
-                freight: freight)},
+                freight: freight
+            }),
 			success: function(freightList) {
 				alert("Pedido enviado com sucesso!");
 			},
