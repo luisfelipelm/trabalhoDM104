@@ -1,9 +1,9 @@
 <?php
 
-$conn = @mysql_connect('localhost','u817180700_dm104','trabdm104');
+$conn = @mysql_connect('localhost','root','lflm.zp,lflm');
 if (!$conn) {
 	die('Não foi possível Conectar: ' . mysql_error());
 }
-mysql_select_db('u817180700_dm104', $conn);
+mysql_select_db('pos_geral', $conn);
 
 ?>

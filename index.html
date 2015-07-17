@@ -6,29 +6,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster" />
 <link rel="stylesheet" href="assets/css/main.css" />
 
-
-<script type="text/javascript">
-    function session(){
-        xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", "assets/php/setSession.php?variable=" + document.getElementById('login').value, true);
-        xmlhttp.send();
-    }
-    function removeSession(){
-        xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", "assets/php/removeSession.php", true);
-        xmlhttp.send();
-        document.getElementById("sairButton").disabled = true;
-        linkRelatorio = document.getElementById('aLinkRelatorio');
-        linkAlteraDados = document.getElementById('aLinkAlteraDados');
-        linkMenuAdmin = document.getElementById('aLinkMenuAdmin');
-        linkRelatorio.innerHTML = '';
-        linkAlteraDados.innerHTML = '';
-        linkMenuAdmin.innerHTML = '';
-        window.sessionStorage.setItem('user','');
-        location.reload();
-    }
-</script>
-
 </head>
  
 <body>
@@ -53,7 +30,7 @@
         <a href="assets/html/menuAdmin.html" id="aLinkMenuAdmin"></a>
     </p>
     <p>
-        <input class="btn" id="sairButton" type="submit" value="Sair" disabled onclick="removeSession()" />
+        <input class="btn" id="sairButton" type="submit" value="Sair" disabled onclick="LoginController.removeSession()" />
     </p>
 </section>
 
@@ -73,7 +50,7 @@
   <div class="control-group">
     <div class="controls">
       <label class="checkbox"><input type="checkbox" /> Lembrar senha</label>
-      <input class="btn" id="loginButton" type="submit" value="Acessar" onclick="session()" />
+      <input class="btn" id="loginButton" type="submit" value="Acessar" onclick="LoginController.session()" />
     </div>
     <div>
       <p>

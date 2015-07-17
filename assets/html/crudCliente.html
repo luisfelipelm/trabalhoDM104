@@ -54,7 +54,7 @@
                 success: function(result){
                     var result = eval('('+result+')');
                     if (result.success){
-                        $('#dlg').dialog('close');        // close the dialog
+                        $('#dlg').dialog('close');      // close the dialog
                         $('#dg').datagrid('reload');    // reload the user data
                     } else {
                         $.messager.show({
