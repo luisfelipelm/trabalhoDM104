@@ -68,7 +68,7 @@ var CartService = {
                 total: totalValue,
                 freight: freight
             }),
-			success: function(freightList) {
+			success: function() {
 				alert("Pedido enviado com sucesso!");
 			},
             error: function(jqXHR, textStatus, errorThrown) {
