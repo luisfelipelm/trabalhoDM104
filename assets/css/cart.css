@@ -79,6 +79,7 @@ td, th {
 }
 
 td img { 
+  cursor: pointer;
   width: 20px;
   padding-left: 45px;
 }

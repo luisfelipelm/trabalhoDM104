@@ -5,6 +5,7 @@
 	$offset = ($page-1)*$rows;
 	$result = array();
     $id= $_SESSION['idpedido'];
+	$cliente_id= $_SESSION['cliente_id'];
 
 	include 'conn.php';
 	
@@ -13,9 +14,10 @@
 
 	$row = mysql_fetch_row($rs);
 	$result["total"] = $row[0];
-	$rs = mysql_query("SELECT prod.produto, ped.quantidade, ped.valor_total, ped.data_pedido 
+	$rs = mysql_query("SELECT prod.produto, ped.quantidade, ped.valor_total, ped.data_pedido, 
+	                   ped.numero_pedido, ped.frete                        	
                         FROM pedido as ped join produtos as prod
-                        where ped.numero_pedido = $id and ped.produto_id = prod.id
+                        where ped.cliente_id = $cliente_id and ped.produto_id = prod.id
                         limit $offset,$rows");
 	
 	$items = array();

@@ -88,5 +88,20 @@ var CartService = {
 		if(listJson) {
 			CartService.list = JSON.parse(listJson);
 		}
-	}
+	},
+    
+    remove: function(id, callback) {
+        
+		var list = CartService.getList(),
+		    product;
+		for (var i = 0; i < list.length; i++) {
+			product = list[i];
+			if(product.id == id) {
+				list.splice(i,1);
+				CartService.saveToLocalStorage();
+                callback(true);
+			}
+		}
+        return false;
+    }
 }

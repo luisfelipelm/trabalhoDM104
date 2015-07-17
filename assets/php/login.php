@@ -1,7 +1,7 @@
 <?php
     session_start();
-    $login= $_POST ["login"];
-    $senha= $_POST ["senha"];
+    $login= isset ($_POST["login"]) ? $_POST["login"] : '';
+    $senha= isset ($_POST["senha"]) ? $_POST["senha"] : '';
 
 
 	include '../php/conn.php';

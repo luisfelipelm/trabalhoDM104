@@ -35,26 +35,29 @@ var CartController = {
 		});
 	},
 	
-	deleteProduct: function(imgDelete) {
-		var 
-			productName = imgDelete.dataset.productname,
-			productId = imgDelete.dataset.productid;
-		
-		if(confirm('Are you sure to delete ' + productName + '?')) {
-			ProductService.remove(productId, function(isDeleted) {
+	deleteProduct: function(imgDelete, productId) {
+		if(confirm('Você tem certeza que o produto de código ' + productId + '?')) {
+			CartService.remove(productId, function(isDeleted) {
 				if(isDeleted) {
-					$(imgDelete).parents('dl').remove();
+                    var total = document.getElementById('totalProd' + productId).innerHTML;
+                    CartController.total = CartController.total - parseFloat(total);
+                    CartController.createTotal(parseFloat(CartController.total).toFixed(2));
+					$(imgDelete).parents('tr').remove();
+                    
 				}
 			})
 		}
 	},
     
-    updateTotalByProduct: function(productId) {
-		var total = document.getElementById('totalProd' + productId).innerHTML,
+    updateTotalByProduct: function(productId, value) {
+		var total = document.getElementById('totalProd' + productId),
             quantity = document.getElementById('product' + productId).value,
-            newTotal = parseFloat(total) * parseInt(quantity);
+            newTotalProduct = value * parseInt(quantity),
+            newTotal = CartController.total + parseFloat(value);
         
-        CartController.createTotal(newTotal);		
+        CartController.total = parseFloat(newTotal);
+        total.innerHTML = parseFloat(newTotalProduct).toFixed(2);
+        CartController.createTotal(newTotal.toFixed(2));		
 	},
 	
 	showList: function () {
@@ -103,12 +106,11 @@ var CartController = {
         tdValue.className = 'tdProdValue';
         
         updateQuantityImg.addEventListener('click', function(event) {
-            alertt('Hii');
-            CartController.updateTotalProduct(product.id); 
+            CartController.updateTotalByProduct(product.id, product.valor); 
          });  
         
          removeItemImg.addEventListener('click', function(event) {
-            CartController.getOrderValuesAndSave(product.id, orderNumber); 
+            CartController.deleteProduct(this, product.id); 
          });  
         
         tdQuantity.appendChild(inputQuantity);
@@ -142,19 +144,6 @@ var CartController = {
     createTotal: function(value) {
         var tdTotal = document.getElementById('total');
         tdTotal.innerHTML = 'R$ ' + value;
-	},
-	
-	createAddToCart: function(product) {
-		var imgAddToCart = ProductController.createImage('assets/images/addToCart.png', 'Adicionar ao Carrinho');
-		
-		imgAddToCart.setAttribute('data-productid', product.id);
-		imgAddToCart.setAttribute('data-productname', product.produto);
-		
-		imgAddToCart.addEventListener('click', function() {
-			ProductController.incrementItemIntoCart(this);
-		});
-		
-		return imgAddToCart;
 	},
     
     incrementItemIntoCart: function(product) {

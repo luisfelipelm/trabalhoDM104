@@ -2,7 +2,10 @@
 <html dir="ltr" lang="pt-BR">
 <head>
 
-<?php session_start(); $_SESSION['idpedido'] = $_POST["pedido"];?>
+<?php 
+	session_start(); 
+	$_SESSION['idpedido'] = $_POST["pedido"];
+?>
 
 <meta charset="UTF-8" /> 
     <title>Relatório compra</title>
@@ -48,7 +51,9 @@
                 <th field="produto" width="50">Produto</th>
                 <th field="quantidade" width="50">Quantidade</th>
                 <th field="valor_total" width="50">Valor total</th>
+				<th field="frete" width="50">frete</th>
                 <th field="data_pedido" width="50">Data</th>
+				<th field="numero_pedido" width="50">Pedido numero</th>
             </tr>
         </thead>
     </table>
