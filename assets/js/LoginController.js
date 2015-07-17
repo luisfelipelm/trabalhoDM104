@@ -49,7 +49,29 @@ var LoginController = {
                 document.getElementById("sairButton").disabled = false;
             }        
         }
-	}	
+	},
+    
+    session: function(){
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "../php/setSession.php?variable=" + document.getElementById('login').value, true);
+        xmlhttp.send();
+    },
+    
+    removeSession: function(){
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "../php/removeSession.php", true);
+        xmlhttp.send();
+        document.getElementById("sairButton").disabled = true;
+        linkRelatorio = document.getElementById('aLinkRelatorio');
+        linkAlteraDados = document.getElementById('aLinkAlteraDados');
+        linkMenuAdmin = document.getElementById('aLinkMenuAdmin');
+        linkRelatorio.innerHTML = '';
+        linkAlteraDados.innerHTML = '';
+        linkMenuAdmin.innerHTML = '';
+        window.sessionStorage.setItem('user','');
+        location.reload();
+    }
+
 };	
 //initialization
 LoginController.init();
