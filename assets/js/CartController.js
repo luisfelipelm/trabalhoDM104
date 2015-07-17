@@ -48,6 +48,14 @@ var CartController = {
 			})
 		}
 	},
+    
+    updateTotalByProduct: function(productId) {
+		var total = document.getElementById('totalProd' + productId).innerHTML,
+            quantity = document.getElementById('product' + productId).value,
+            newTotal = parseFloat(total) * parseInt(quantity);
+        
+        CartController.createTotal(newTotal);		
+	},
 	
 	showList: function () {
         var list = CartService.getList(),
@@ -86,11 +94,28 @@ var CartController = {
             tdId = CartController.createTD(product.id),
             tdNome = CartController.createTD(product.produto),
             inputQuantity = CartController.createInputText('1', 'text', product.id),
+            updateQuantityImg= CartController.createImage('../images/updateQuantity.png', 'Atualizar Valor'),
+            removeItemImg = CartController.createImage('../images/removeItem.png', 'Remover Produto'),
             tdQuantity = CartController.createTD(''),
             tdValue = CartController.createTD(product.valor);
 
         tdValue.id = 'totalProd' + product.id;
+        tdValue.className = 'tdProdValue';
+        
+        updateQuantityImg.addEventListener('click', function(event) {
+            alertt('Hii');
+            CartController.updateTotalProduct(product.id); 
+         });  
+        
+         removeItemImg.addEventListener('click', function(event) {
+            CartController.getOrderValuesAndSave(product.id, orderNumber); 
+         });  
+        
         tdQuantity.appendChild(inputQuantity);
+        tdQuantity.appendChild(updateQuantityImg);
+        tdQuantity.appendChild(removeItemImg);
+        tdQuantity.className = 'tdQuantity';
+        
         tr.appendChild(tdId);
         tr.appendChild(tdNome);
         tr.appendChild(tdQuantity);
@@ -98,7 +123,7 @@ var CartController = {
         
 		return tr;
 	},
-	
+    
 	createTD: function(value) {
 		var td = document.createElement('td');
 		td.innerHTML = value;
@@ -169,7 +194,7 @@ var CartController = {
         
         radioButton.addEventListener('change', function(event) {
                 CartController.freight = parseFloat(event.target.value);
-                CartController.calculateTotal(CartController.freight);
+                CartController.calculateTotal(parseFloat(CartController.freight) + CartController.total);
 		});
         
         label.appendChild(radioButton);
@@ -189,8 +214,8 @@ var CartController = {
         }
     },
     
-    calculateTotal: function(value) {
-         CartController.createTotal(parseFloat(value) + CartController.total);    
+    calculateTotal: function(total) {
+         CartController.createTotal(total);    
     },
     
     getOrderValuesAndSave: function(productId, orderNumber) {

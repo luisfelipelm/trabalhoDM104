@@ -2,7 +2,7 @@
 <html dir="ltr" lang="pt-BR">
 <head>
 
-<?php session_start(); $_SESSION['idpedido'] = $_POST["pedido"]; ?>
+<?php session_start(); $_SESSION['idpedido'] = $_POST["pedido"];?>
 
 <meta charset="UTF-8" /> 
     <title>Relatório compra</title>
