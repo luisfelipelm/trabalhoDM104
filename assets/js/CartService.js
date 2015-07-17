@@ -60,22 +60,19 @@ var CartService = {
 		$.ajax({
 			type: 'POST',
 			url: '../php/orderDAO.php',
-            dataType: 'json',
-            data: JSON.stringify({
+            data:{
                 product_id: productId,
                 client_id: clientId,
                 quantity: quantity,
                 total: totalValue,
                 freight: freight
-            }),
-			success: function(freightList) {
-				alert("Pedido enviado com sucesso!");
+            },
+			success: function() {
+				return true;
 			},
             error: function(jqXHR, textStatus, errorThrown) {
                 alert('Erro ao tentar ação!');
-                alert(jqXHR);
-                alert(textStatus);
-                alert(errorThrown);
+                return false;              
             },
 		});
 	},
