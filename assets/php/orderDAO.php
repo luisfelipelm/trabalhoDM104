@@ -6,10 +6,11 @@ saveOrder();
 
 function saveOrder()  {
     
-    $product_id = $_GET ["product_id"];
-    $client_id = $_GET ["client_id"];
-    $quantity = $_GET ["quantity"];
-    $total = $_GET ["total"];
+    $product_id = $_POST ["product_id"];
+    $client_id = $_POST ["client_id"];
+    $quantity = $_POST ["quantity"];
+    $total = $_POST ["total"];
+    $freight = $_POST ["freight"];
     $order_date = date('Y-m-d');
     $order_number = rand(1000,1000000);
     
@@ -20,6 +21,7 @@ function saveOrder()  {
             'valor_total' => $total,
             'data_pedido' => $order_date,
             'numero_pedido' => $order_number,
+            'frete' => $freight,
     );
 
     print_r($order);

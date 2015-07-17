@@ -4,6 +4,8 @@ var CartController = {
     
     totalWeight: parseFloat('0.0'),
     
+    freight: 0,
+    
     init: function () {
         CartController.getItemsIntoCart();
         CartController.showList();
@@ -12,7 +14,7 @@ var CartController = {
 	},	
     
     setForm: function () {
-		var sendButton = document.getElementById('freightForm');
+		var form = document.getElementById('freightForm');
 		form.addEventListener('submit', function(event) {
             event.preventDefault();
             CartController.calculateFreight();   
@@ -20,11 +22,15 @@ var CartController = {
 	},
     
     sendOrder: function () {
-        var form = document.getElementById('sendOrder');
-		form.addEventListener('click', function(event) {
-            CartController.getOrderValues();   
+        var sendButton = document.getElementById('sendOrder'),
+            list = CartService.getList();
+        
+		sendButton.addEventListener('click', function(event) {
+            alert('Hi');
+            list.forEach(function(product) {
+                CartController.getOrderValuesAndSave(product.id); 
+            });    
 		});
-
 	},
 	
 	deleteProduct: function(imgDelete) {
@@ -77,10 +83,11 @@ var CartController = {
 		var tr = document.createElement('tr'),
             tdId = CartController.createTD(product.id),
             tdNome = CartController.createTD(product.produto),
-            inputQuantity = CartController.createInputText('1', 'text'),
+            inputQuantity = CartController.createInputText('1', 'text', product.id),
             tdQuantity = CartController.createTD(''),
             tdValue = CartController.createTD(product.valor);
 
+        tdValue.id = 'totalProd' + product.id;
         tdQuantity.appendChild(inputQuantity);
         tr.appendChild(tdId);
         tr.appendChild(tdNome);
@@ -96,10 +103,12 @@ var CartController = {
 		return td;
 	},
     
-    createInputText: function(value, type) {
+    createInputText: function(value, type, id) {
         var inputQuantity = document.createElement('input');
 		inputQuantity.type = type;
         inputQuantity.value = value;
+        inputQuantity.id = 'product' + id;
+
 		return inputQuantity;
 	},
     
@@ -157,7 +166,8 @@ var CartController = {
         radioButton.name = 'freight';
         
         radioButton.addEventListener('change', function(event) {
-                CartController.calculateTotal(event.target.value);
+                CartController.freight = parseFloat(event.target.value);
+                CartController.calculateTotal(CartController.freight);
 		});
         
         label.appendChild(radioButton);
@@ -181,8 +191,13 @@ var CartController = {
          CartController.createTotal(parseFloat(value) + CartController.total);    
     },
     
-    getOrderValues: function(value) {
-          
+    getOrderValuesAndSave: function(productId) {
+        var clientId = LoginService.getUserId(),
+            quantity = document.getElementById('product' + productId).value,
+            total = document.getElementById('totalProd' + productId).value,
+            freight = CartController.freight;
+        
+            CartService.saveOrder(productId, clientId, quantity, total, freight);
     }
 };
 

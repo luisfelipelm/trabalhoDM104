@@ -56,17 +56,17 @@ var CartService = {
 		});
 	},
 
-    saveOrder: function(productId, clientId, quantity, totalValue) {
+    saveOrder: function(productId, clientId, quantity, totalValue, freight) {
 		$.ajax({
-			type: 'GET',
+			type: 'POST',
 			url: '../php/orderDAO.php',
             dataType: 'json',
-            data: {
+            data: JSON.stringify({
                 product_id: productId,
                 client_id: clientId,
                 quantity: quantity,
-                total: totalValue
-            },
+                total: totalValue,
+                freight: freight)},
 			success: function(freightList) {
 				alert("Pedido enviado com sucesso!");
 			},

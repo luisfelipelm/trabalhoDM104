@@ -2,14 +2,22 @@ var LoginService = {
     
     user: '',
     
-    getUser: function (login, password) {
+    userId: '',
+    
+    getUser: function () {
         LoginService.retrieveFromSessionStorage();
         return LoginService.user;
+	},
+    
+    getUserId: function () {
+        LoginService.retrieveUserIdFromSessionStorage();
+        return LoginService.userId;
 	},
     
     saveLogin: function (login, password, notifyController) {
         LoginService.getLogin(login, password, function(credentials) {
             LoginService.user = credentials[0];
+            LoginService.userId = credentials[2]
             LoginService.saveToSessionStorage();
             notifyController();
         });
@@ -38,12 +46,20 @@ var LoginService = {
 	
 	saveToSessionStorage: function () {
 		window.sessionStorage.setItem('user', LoginService.user);
+        window.sessionStorage.setItem('userId', LoginService.userId);
 	},
 	
 	retrieveFromSessionStorage: function () {
 		var user = window.sessionStorage.getItem('user');
 		if(user) {
 			LoginService.user = user;
+		}
+	},
+    
+    retrieveUserIdFromSessionStorage: function () {
+		var userId = window.sessionStorage.getItem('userId');
+		if(userId) {
+			LoginService.userId = userId;
 		}
 	}
 }
