@@ -13,6 +13,7 @@ function saveOrder()  {
     $freight = $_POST ["freight"];
     $order_date = date('Y-m-d');
     $order_number = $_POST ["orderNumber"];
+    $status = "ENVIADO";
     
     $order = array(
 			'produto_id' => $product_id,
@@ -22,6 +23,7 @@ function saveOrder()  {
             'data_pedido' => $order_date,
             'numero_pedido' => $order_number,
             'frete' => $freight,
+            'status' => $status,
     );
 
     print_r($order);

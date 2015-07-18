@@ -4,7 +4,7 @@
 
 <?php 
 	session_start(); 
-	$_SESSION['idpedido'] = $_POST["pedido"];
+	
 ?>
 
 <meta charset="UTF-8" /> 
@@ -54,6 +54,7 @@
 				<th field="frete" width="50">frete</th>
                 <th field="data_pedido" width="50">Data</th>
 				<th field="numero_pedido" width="50">Pedido numero</th>
+                <th field="status" width="50">Status</th>
             </tr>
         </thead>
     </table>

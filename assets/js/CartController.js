@@ -42,7 +42,7 @@ var CartController = {
                     CartController.getOrderValuesAndSave(product.id, orderNumber, clientId, freight); 
                 });  
           
-                alert('Pedido enviado com sucesso!');
+                alert('Pedido de número ' + orderNumber + ' enviado com sucesso!');
             }
 
 		});
