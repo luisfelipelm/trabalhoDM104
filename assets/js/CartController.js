@@ -9,11 +9,11 @@ var CartController = {
     init: function () {
         CartController.getItemsIntoCart();
         CartController.showList();
-        CartController.setForm();
+        CartController.setFreightForm();
         CartController.sendOrder();
 	},	
     
-    setForm: function () {
+    setFreightForm: function () {
 		var form = document.getElementById('freightForm');
 		form.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -53,7 +53,7 @@ var CartController = {
 			CartService.remove(productId, function(isDeleted) {
 				if(isDeleted) {
                     var total = document.getElementById('totalProd' + productId).innerHTML;
-                    CartController.total = CartController.total - parseFloat(total);
+                    CartController.total = CartController.total - parseFloat(total.slice(3));
                     CartController.createTotal(parseFloat(CartController.total).toFixed(2));
 					$(imgDelete).parents('tr').remove();
                     
@@ -63,14 +63,21 @@ var CartController = {
 	},
     
     updateTotalByProduct: function(productId, value) {
-		var total = document.getElementById('totalProd' + productId),
+		var totalProd = document.getElementById('totalProd' + productId),
+            oldTotalProduct = totalProd.innerHTML.slice(3),
             quantity = document.getElementById('product' + productId).value,
             newTotalProduct = value * parseInt(quantity),
-            newTotal = CartController.total + parseFloat(value);
+            freight = $("input[name='freightRadio']:checked").val(),
+            diffTotalProduct = parseFloat(newTotalProduct) - parseFloat(oldTotalProduct),
+            newTotal = CartController.total + parseFloat(diffTotalProduct);
+        
+        if(freight != null && freight != '' && freight != 'undefined' && freight != 'NaN'){
+            newTotal = newTotal + parseFloat(freight);
+        }
         
         CartController.total = parseFloat(newTotal);
-        total.innerHTML = 'R$ ' + parseFloat(newTotalProduct).toFixed(2);
-        CartController.createTotal(newTotal.toFixed(2));		
+        totalProd.innerHTML = 'R$ ' + parseFloat(newTotalProduct).toFixed(2);
+        CartController.createTotal(parseFloat(newTotal).toFixed(2));		
 	},
 	
 	showList: function () {
@@ -156,7 +163,7 @@ var CartController = {
     
     createTotal: function(value) {
         var tdTotal = document.getElementById('total');
-        tdTotal.innerHTML = 'R$ ' + value.toFixed(2);
+        tdTotal.innerHTML = 'R$ ' + parseFloat(value).toFixed(2);
 	},
     
     incrementItemIntoCart: function(product) {
@@ -187,18 +194,19 @@ var CartController = {
     creatingRadioButton: function(freight) {
          var fieldset =  document.getElementById('freightFields'),
              radioButton = document.createElement('input'),
-             label = document.createElement("label");;   
+             label = document.createElement("label");   
         
         radioButton.type = 'radio';
         radioButton.id = freight.tipo;
         radioButton.value = freight.valor;
-        radioButton.name = 'freight';
+        radioButton.name = 'freightRadio';
         
         radioButton.addEventListener('change', function(event) {
                 CartController.freight = parseFloat(event.target.value);
                 CartController.calculateTotal(parseFloat(CartController.freight) + CartController.total);
 		});
         
+        label.id = 'label' + freight.tipo;
         label.appendChild(radioButton);
         label.appendChild(document.createTextNode(freight.tipo +  ": R$ " + freight.valor));
         
@@ -207,12 +215,12 @@ var CartController = {
     
     clearRadioButton: function() {
          var fieldset =  document.getElementById('freightFields'),
-             radioButtonPac = document.getElementById('PAC'),
-             radioButtonSedex = document.getElementById('SEDEX');   
+             labelPac = document.getElementById('labelPAC'),
+             labelSedex = document.getElementById('labelSEDEX');   
         
-        if (radioButtonPac != null && radioButtonPac != null) {
-            fieldset.removeChild(radioButtonPac);
-            fieldset.removeChild(radioButtonSedex);
+        if (labelPac != null && labelSedex != null) {
+            fieldset.removeChild(labelPac);
+            fieldset.removeChild(labelSedex);
         }
     },
     
@@ -222,7 +230,7 @@ var CartController = {
     
     getOrderValuesAndSave: function(productId, orderNumber, clientId, freight) {
         var quantity = document.getElementById('product' + productId).value,
-            total = document.getElementById('totalProd' + productId).innerHTML;
+            total = document.getElementById('totalProd' + productId).innerHTML.slice(3);
         
             CartService.saveOrder(productId, clientId, quantity, total, freight, orderNumber);          
     }

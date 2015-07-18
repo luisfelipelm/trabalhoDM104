@@ -18,6 +18,7 @@
 	                   ped.numero_pedido, ped.frete                        	
                         FROM pedido as ped join produtos as prod
                         where ped.cliente_id = $cliente_id and ped.produto_id = prod.id
+						order by ped.numero_pedido
                         limit $offset,$rows");
 	
 	$items = array();
