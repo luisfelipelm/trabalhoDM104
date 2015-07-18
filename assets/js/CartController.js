@@ -37,6 +37,7 @@ var CartController = {
                 alert('Calcule o frete antes de enviar o pedido!');
                 
             } else {
+                list = CartService.getList();
                 list.forEach(function(product) {
                     CartController.getOrderValuesAndSave(product.id, orderNumber, clientId, freight); 
                 });  
@@ -68,7 +69,7 @@ var CartController = {
             newTotal = CartController.total + parseFloat(value);
         
         CartController.total = parseFloat(newTotal);
-        total.innerHTML = parseFloat(newTotalProduct).toFixed(2);
+        total.innerHTML = 'R$ ' + parseFloat(newTotalProduct).toFixed(2);
         CartController.createTotal(newTotal.toFixed(2));		
 	},
 	
@@ -112,7 +113,7 @@ var CartController = {
             updateQuantityImg= CartController.createImage('../images/updateQuantity.png', 'Atualizar Valor'),
             removeItemImg = CartController.createImage('../images/removeItem.png', 'Remover Produto'),
             tdQuantity = CartController.createTD(''),
-            tdValue = CartController.createTD(product.valor);
+            tdValue = CartController.createTD('R$ ' + product.valor);
 
         tdValue.id = 'totalProd' + product.id;
         tdValue.className = 'tdProdValue';
@@ -155,7 +156,7 @@ var CartController = {
     
     createTotal: function(value) {
         var tdTotal = document.getElementById('total');
-        tdTotal.innerHTML = 'R$ ' + value;
+        tdTotal.innerHTML = 'R$ ' + value.toFixed(2);
 	},
     
     incrementItemIntoCart: function(product) {
