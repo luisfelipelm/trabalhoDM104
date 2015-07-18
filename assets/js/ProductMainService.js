@@ -7,6 +7,9 @@ var ProductService = {
 			type: 'GET',
 			url: 'assets/php/productDAO.php',
             dataType: 'json',
+            data: {
+                method: 'getProducts'
+            },
 			success: function(list) {
 				callback(list);
 			},
@@ -21,6 +24,10 @@ var ProductService = {
 			type: 'GET',
 			url: 'assets/php/productDAO.php',
             dataType: 'json',
+            data: {
+                method: 'getProductById',
+                id: id
+            },
 			success: function(list) {
 				callback(list);
 			},

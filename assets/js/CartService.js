@@ -38,7 +38,7 @@ var CartService = {
     getProductById: function(id, callback) {
 		$.ajax({
 			type: 'GET',
-			url: 'assets/php/getProductById.php',
+			url: 'assets/php/productDAO.php',
             dataType: 'json',
             data: {
                 method: 'getProductById',
