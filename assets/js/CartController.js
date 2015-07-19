@@ -26,7 +26,7 @@ var CartController = {
             list = CartService.getList();
 
 		sendButton.addEventListener('click', function(event) {
-            var orderNumber = Math.floor(Math.random() * 10000) - 1000,
+            var orderNumber = Math.floor(Math.random() * 10000) + 1000,
                 clientId = LoginService.getUserId(),
                 freight = CartController.freight;
             
